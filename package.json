@@ -1,0 +1,43 @@
+{
+  "name": "insult-function-gcp",
+  "version": "1.0.0",
+  "description": "A port of the famous node-insult insult generator service to Google Cloud Functions",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shladdergoo/insult-function-gcp"
+  },
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
+    "lint": "tslint --force --format verbose \"src/**/*.ts\"",
+    "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
+    "build": "tsc --pretty",
+    "postbuild": "copyfiles package.json .npmrc dist/src && copyfiles -u 1 src/settings.json dist/src",
+    "pretest": "npm run build",
+    "test": "mocha dist/__tests__/**/*-spec.js --reporter mocha-multi-reporters --reporter-options configFile=__tests__/reporter-config.json",
+    "test-ci": "mocha dist/__tests__/**/*-spec.js --reporter mocha-multi-reporters --reporter-options configFile=__tests__/reporter-config.json",
+    "deploy-local": "npm run build && functions start && cd dist/src/insultHttpTrigger && functions deploy insultHttpTrigger --trigger-http && functions inspect insultHttpTrigger",
+    "kill-local": "functions kill"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/node": "^10.12.12",
+    "copyfiles": "^2.1.0",
+    "mocha": "^5.2.0",
+    "mocha-multi-reporters": "^1.1.7",
+    "prettier": "^1.15.3",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "inversify": "^5.0.1",
+    "node-insult": "^1.0.14",
+    "reflect-metadata": "^0.1.12"
+  }
+}
