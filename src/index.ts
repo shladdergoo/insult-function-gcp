@@ -6,12 +6,11 @@ import { IInsultService, Types } from 'node-insult';
 
 import { Request, Response } from 'express';
 
-/* tslint:disable:no-var-requires */
-const settings = require('./settings');
-
 export function insultHttpTrigger(req: Request, res: Response) {
+  const versionKey = 'Version';
+  const version = process.env[versionKey];
   console.log(
-    `insultHttpTrigger (${settings.Version}) processed a request. RequestUri=${
+    `insultHttpTrigger (${version}) processed a request. RequestUri=${
       req.originalUrl
     }`
   );

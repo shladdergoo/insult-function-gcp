@@ -13,7 +13,7 @@
     "lint": "tslint --force --format verbose \"src/**/*.ts\"",
     "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
     "build": "tsc --pretty",
-    "postbuild": "copyfiles package.json .npmrc dist/src && copyfiles -u 1 src/settings.json dist/src",
+    "postbuild": "copyfiles package.json .npmrc dist/src",
     "pretest": "npm run build",
     "test": "mocha dist/__tests__/**/*-spec.js --reporter mocha-multi-reporters --reporter-options configFile=__tests__/reporter-config.json",
     "test-ci": "mocha dist/__tests__/**/*-spec.js --reporter mocha-multi-reporters --reporter-options configFile=__tests__/reporter-config.json",

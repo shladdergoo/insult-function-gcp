@@ -5,6 +5,7 @@
       "type": "npm",
       "label": "runFunctionsHost",
       "script": "deploy-local",
+      "options": {"env": {"Version": "1.0.0"}},
       "problemMatcher": []
     },
     {
