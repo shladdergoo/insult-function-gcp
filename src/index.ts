@@ -7,7 +7,7 @@ import { IInsultService, Types } from 'node-insult';
 import { Request, Response } from 'express';
 
 /* tslint:disable:no-var-requires */
-const settings = require('../settings');
+const settings = require('./settings');
 
 export function insultHttpTrigger(req: Request, res: Response) {
   console.log(

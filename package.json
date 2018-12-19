@@ -17,7 +17,7 @@
     "pretest": "npm run build",
     "test": "mocha dist/__tests__/**/*-spec.js --reporter mocha-multi-reporters --reporter-options configFile=__tests__/reporter-config.json",
     "test-ci": "mocha dist/__tests__/**/*-spec.js --reporter mocha-multi-reporters --reporter-options configFile=__tests__/reporter-config.json",
-    "deploy-local": "npm run build && functions start && cd dist/src/insultHttpTrigger && functions deploy insultHttpTrigger --trigger-http && functions inspect insultHttpTrigger",
+    "deploy-local": "npm run build && functions start && cd dist/src && functions deploy insultHttpTrigger --trigger-http && functions inspect insultHttpTrigger",
     "kill-local": "functions kill"
   },
   "author": "",
