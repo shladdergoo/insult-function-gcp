@@ -5,4 +5,7 @@ CI Build [![Build Status](https://hcc-devops.visualstudio.com/CI/_apis/build/sta
 
 CD Deployment [![Deployment Status](https://hcc-devops.vsrm.visualstudio.com/_apis/public/Release/badge/4a39983c-4bc6-4bb5-87d6-d5a77491e0d3/6/6)](https://hcc-devops.vsrm.visualstudio.com/_apis/public/Release/badge/4a39983c-4bc6-4bb5-87d6-d5a77491e0d3/6/6)
 
+Urls:  
+Production - https://us-central1-sincere-stack-225809.cloudfunctions.net/insultHttpTrigger
+
 npm install -g @google-cloud/functions-emulator
