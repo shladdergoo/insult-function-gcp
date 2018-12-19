@@ -1,0 +1,59 @@
+name: 1.0$(rev:.r)
+
+pool:
+  name: 'Default'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '8.x'
+  displayName: 'Install Node.js'
+
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    verbose: false
+
+- task: Npm@1
+  displayName: 'npm build'
+  inputs:
+    command: custom
+
+    verbose: false
+
+    customCommand: 'run build'
+
+# - script: |
+#     npm run test-ci
+#   displayName: 'npm test'
+
+# - task: PublishTestResults@1
+#   inputs:
+#     testResultsFiles: 'dist/__tests__/test-results.xml'
+
+- task: npmAuthenticate@0
+  displayName: 'npm authenticate .npmrc'
+  inputs:
+    workingFile: dist/src/.npmrc
+
+- task: CopyFiles@2
+  displayName: 'Copy dist files'
+  inputs:
+    SourceFolder: 'dist/src'
+    Contents: |
+     **/*.js
+     **/*.json
+     .npmrc
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: ArchiveFiles@2
+  displayName: 'Archive files'
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+    includeRootFolder: false
+    archiveFile: '$(Build.ArtifactStagingDirectory)/insult-function_gcp_$(Build.BuildNumber).zip'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifacts: drop'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/insult-function_gcp_$(Build.BuildNumber).zip'
